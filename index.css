@@ -1,0 +1,141 @@
+
+#gameCanvas {
+    float:left;
+    border: 1px solid black;
+}
+
+
+#gameMenu {
+    float:left;
+    width:180px;
+    height: 497.5px;
+    background-color: rgb(100,100,100);
+    border: 2.5px solid rgb(44, 44, 44);
+
+    left: 500px;
+}
+
+#menuInfo {
+    height:200px;
+}
+
+#menuInfo img{
+    float: left;
+    width: 50px;
+    
+}
+
+img{
+    float: bottom, left;
+    height: 200px;
+    width: 200px;
+    padding: -10px;
+
+}
+
+
+h2{
+     fill: 2.5px solid rgb(200, 200 ,200);
+    font-size: 20;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 10;
+}
+h1{
+    font-size: 70;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 10;
+}
+
+
+
+
+#menuInfo .health {
+    float: left;
+    width: 50px;
+    height: 50px; 
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom:10.5px;
+            }
+
+#menuInfo .money {
+    float: left;
+    width: 65px;
+    height: 65px;
+    padding-left: 3px; 
+            }
+
+#rectangle {
+ border: 2.5px solid rgb(53, 53, 53);
+ background-color:rgba(0, 0, 0, 0.5);
+ float: left;
+ width: 180px;
+ height: 20px;
+ text-align: center;
+font-family: 'Courier New', Courier, monospace;
+font-weight: 100;
+font-size: 14px;
+margin-bottom: 10.5
+
+}
+            
+
+#menuInfo h2{
+    float: left;
+    width: 100px;
+    height:34.8;
+    font-size:20px;
+    padding-left: 0px;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+#menuButtons button{
+    border: 2.5px solid rgb(53, 53, 53);
+    background-color:rgba(255, 255, 255, 0.2);
+    float: left;
+    height: 58.7px;
+    width:180px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+    font-size: 17px;
+    text-align:center;
+}
+
+#uselessNumber text{
+    float: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+    font-size: 11px;
+    text-align:center;
+}
+
+
+     #menuButtons button:hover{
+    color: rgb(255, 255, 255);
+    background-color:rgb(30, 30, 30)};
+
+    /* Button needs to give text a relative position */
+.hoverButton {
+    position: relative;
+}
+
+.hoverButton .hoverText{
+    /* Text needs to be to the absolute left of button */
+position: relative;
+    left: 0px;
+    top: 5px;
+    width: 200px;
+    height: 30px;
+    padding-top: 0px;
+    background-color: rgb(30, 30, 30);
+    color: rgb(255 255 255 / 1);
+    visibility: hidden;
+
+}
+
+
+
+/* Hover text appears when button is hovered on */
+.hoverButton:hover .hoverText {
+  visibility: visible;
+}

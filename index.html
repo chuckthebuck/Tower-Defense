@@ -1,0 +1,73 @@
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js'>
+
+	</script>
+	<script src='path.js'>
+
+	</script>
+	<script src='enemy.js'>
+
+	</script>
+	<script src='turret.js'>
+
+	</script>
+	<script src='projectile.js'>
+
+	</script>
+	<script src='buttons.js'>
+
+	</script>
+	<script src='wave.js'>
+
+	</script>
+	<script src='extraTurrets.js'>
+
+	</script>
+	<script src='input.js'>
+
+	</script>
+</head>
+
+<body>
+	<h1>Tower Defense!<h1>
+			<h2>Jackson's tool to time wasting<h2>
+
+
+					<div id="gameCanvas"></div>
+					<div id="gameMenu">
+						<div id="menuInfo">
+							<div title="Money">
+								<img class = "Money" src="Images/mone.png"></img>
+<h2 id="Money">100</h2>
+</div>
+
+<div title='Health'>
+<img class = "Health" src="//d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/043/533/original/health.png"></img>
+<h2 id="Health">100</h2>
+</div>
+
+
+<div id="menuButtons">
+      <button id ="rectangle" onclick ="switchTurret()"> Semi Auto Turret</button>
+       <button onclick="startGame()">Start Wave
+    <span class="hoverText" id='startGameText'></span>
+    </button>
+    <button class="hoverButton" onclick="buyTurret()" onmouseover="checkTurret()">Buy Turret    <span class="hoverText" id='buyTurretText'>Price: $300</span></button>
+    
+    <button onclick="upgradeTurret()">Improve Turret</button>
+    <button onclick="sellTurret()">Sell Turret</button>
+    <button onclick = "pauseGame()">Pause</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+<img src="//d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/043/780/original/261-2619376_fatyoshi-beeg-yoshi_%281%29.png"></img>
+	<script src='index.js'>
+        	</script>
+</body>
