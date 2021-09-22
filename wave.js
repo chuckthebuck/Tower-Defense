@@ -63,7 +63,7 @@ class Wave {
     if (this.number % 5 == 1) {
       this.groupAmount++;
       this.speed += 0.2;
-      this.strength += 0.2;
+      this.strength += 0.25;
     }
     if(this.number === 3){
       this.groupSize++;
@@ -71,7 +71,7 @@ class Wave {
 
     if (this.number % 10 == 2) {
       this.groupSize++;
-      this.speed += 0.3;
+      this.speed += 0.25;
     }
 
     this.groupDelay = random(35, 75)
@@ -89,7 +89,7 @@ class Wave {
     }
 
 
-    this.strength += 1.2;
+    this.strength += 1.07;
 
 
 

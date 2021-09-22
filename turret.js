@@ -30,6 +30,7 @@ class Turret {
       money -= upgradePrice;
       updateInfo();
       this.upgrades++;
+      this.value += upgradePrice;
 
 
       if (this instanceof Sniper) {
@@ -58,10 +59,6 @@ class Turret {
 
       } else if (this instanceof Turret) {
         this.shootingTimer -= 1;
-        if (this.upgrades % 2 == 1) {
-          this.projectileStrength += 0.7;
-          this.range += 20;
-        }
       } else if (this instanceof Small) {
         this.shootingTimer -= 0.35;
         if (this.upgrades % 2 == 1) {
@@ -69,315 +66,337 @@ class Turret {
           this.range += 5;
         }
       }
-    } else if (this instanceof Small) {
+    } else if (this instanceof Shotgun) {
       this.shootingTimer -= 0.35;
       if (this.upgrades % 2 == 1) {
         this.projectileStrength += 0.5;
+        this.range += 5;
+      }
+    } else if (this instanceof Mini) {
+        this.shootingTimer -= 0.6;
+      if (this.upgrades % 2 == 1) {
+        this.range += 10;
+        this.projectileStrength += 0.5;
+      }
+    }
+
+
+
+    this.projectileSpeed += 0.2;
+  }
+
+
+
+
+
+
+  draw() {
+    //Turret Visibility Circle
+    if (!this.placed || this.selected) {
+      strokeWeight(1);
+      stroke(0, 0, 0, 50);
+      fill(this.chooseColor());
+      ellipse(this.x, this.y, this.range * 2, this.range * 2);
+    }
+
+    //Turret Gun
+    strokeWeight(7.5);
+    fill(20, 20, 20)
+    stroke(20, 20, 20);
+    var x = this.gunSize * cos(this.lookAngle);
+    var y = this.gunSize * sin(this.lookAngle);
+    line(this.x, this.y, this.x + x, this.y + y);
+
+    //Turret Body
+    strokeWeight(2);
+    stroke(20, 20, 20);
+    fill(255, 255, 255);
+    ellipse(this.x, this.y, this.size, this.size);
+
+    if (this.selected) {
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      textAlign(CENTER, BOTTOM);
+      textSize(10);
+      stroke(0);
+      fill(255);
+      text(22);
+      text("Lvl:", this.x - 5.5, this.y - 25);
+      text(this.upgrades, this.x + 10, this.y - 25);
+      if (this.targetMode == 1) {
+        text("\n-Targeting-\n Closest Enemy To Turret", this.x, this.y)
+        rect(this.x, this.y);
+      } else if (this.targetMode == 2) {
+        text("\n-Targeting-\n Farthest Enemy From Turret", this.x, this.y)
+        rect(this.x, this.y);
+      } else if (this.targetMode == 3) {
+        text("\n-Targeting-\n Strongest Enemy", this.x, this.y)
+        rect(this.x, this.y);
+      } else if (this.targetMode == 4) {
+        text("\n-Targeting-\n Weakest Enemy", this.x, this.y)
+        rect(this.x, this.y);
+      } else if (this.targetMode == 5) {
+        text("\n-Targeting-\n Farthest Enemy From Start", this.x, this.y)
+        rect(this.x, this.y);
       }
     }
   }
 
-
-      this.projectileSpeed += 2;
-this.value += upgradePrice;
-
-
-
-
-    }
-
-
-draw() {
-  //Turret Visibility Circle
-  if (!this.placed || this.selected) {
-    strokeWeight(1);
-    stroke(0, 0, 0, 50);
-    fill(this.chooseColor());
-    ellipse(this.x, this.y, this.range * 2, this.range * 2);
-  }
-
-  //Turret Gun
-  strokeWeight(7.5);
-  fill(20, 20, 20)
-  stroke(20, 20, 20);
-  var x = this.gunSize * cos(this.lookAngle);
-  var y = this.gunSize * sin(this.lookAngle);
-  line(this.x, this.y, this.x + x, this.y + y);
-
-  //Turret Body
-  strokeWeight(2);
-  stroke(20, 20, 20);
-  fill(255, 255, 255);
-  ellipse(this.x, this.y, this.size, this.size);
-
-  if (this.selected) {
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    textAlign(CENTER, BOTTOM);
-    textSize(10);
-    if (this.targetMode == 1) {
-      text("\n-Targeting-\n Closest Enemy To Turret", this.x, this.y)
-      rect(this.x, this.y);
-    } else if (this.targetMode == 2) {
-      text("\n-Targeting-\n Farthest Enemy From Turret", this.x, this.y)
-      rect(this.x, this.y);
-    } else if (this.targetMode == 3) {
-      text("\n-Targeting-\n Strongest Enemy", this.x, this.y)
-      rect(this.x, this.y);
-    } else if (this.targetMode == 4) {
-      text("\n-Targeting-\n Weakest Enemy", this.x, this.y)
-      rect(this.x, this.y);
-    } else if (this.targetMode == 5) {
-      text("\n-Targeting-\n Farthest Enemy From Start", this.x, this.y)
-      rect(this.x, this.y);
-    }
-    text(22);
-    text("Lvl:", this.x - 5.5, this.y - 25);
-    text(this.upgrades, this.x + 10, this.y - 25);
-  }
-}
-
-followMouse() {
-  this.x = mouseX;
-  this.y = mouseY;
-}
-
-onRoad() {
-  for (var road of this.roads) {
-    if (CircleInRect(this, road)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-onTurret() {
-  var temp = { x: this.x, y: this.y, size: this.size * 1.5 }
-  for (var turret of turrets) {
-    if (turret.placed) {
-      if (CircleInCircle(temp, turret)) {
-        return true;
-      }
-
-    }
-
-  }
-  return false;
-}
-isValid() {
-  if (this.x < 0 || this.x > 500 || this.y < 0 || this.y > 500) {
-    return false;
-  }
-
-
-  if (this.onRoad()) {
-    return false;
-  }
-  if (this.onTurret()) {
-    return false;
-  }
-  return true;
-
-}
-
-shootProjectile() {
-  if (this.shootingTimer < this.shotCooldown) {
-    this.shootingTimer += 1;
-  } else {
-    this.shootingTimer = 0;
-
-    let x = this.x + (this.gunSize * cos(this.lookAngle));
-    let y = this.y + (this.gunSize * sin(this.lookAngle));
-
-    let xSpeed = this.projectileSpeed * cos(this.lookAngle);
-    let ySpeed = this.projectileSpeed * sin(this.lookAngle);
-
-    projectiles.push(new this.projectile(x, y, xSpeed, ySpeed, this.projectileStrength));
-
-  }
-
-}
-
-closeToTurret() {
-
-  var closestDistance = Infinity;
-  var closestEnemy = null;
-
-  for (var enemy of enemies) {
-    var distance = dist(enemy.x, enemy.y, this.x, this.y);
-
-    if (distance > this.range + enemy.size / 2) {
-      continue;
-    }
-
-    if (distance < closestDistance) {
-      closestDistance = distance;
-      closestEnemy = enemy;
-    }
-  }
-
-  return closestEnemy;
-}
-
-farToTurret() {
-
-  var farthestDistance = - Infinity;
-  var farthestEnemy = null;
-
-  for (var enemy of enemies) {
-    var distance = dist(enemy.x, enemy.y, this.x, this.y);
-
-    if (distance > this.range + enemy.size / 2) {
-      continue;
-    }
-
-    if (distance > farthestDistance) {
-      farthestDistance = distance;
-      farthestEnemy = enemy;
-    }
-  }
-
-  return farthestEnemy;
-}
-
-strongestEnemy() {
-
-  var strongestStrength = - Infinity;
-  var strongestEnemy = null;
-
-  for (var enemy of enemies) {
-    var distance = dist(enemy.x, enemy.y, this.x, this.y);
-    var strength = enemy.strength;
-    if (distance > this.range + enemy.size / 2) {
-      continue;
-    }
-
-    if (enemy.strength > strongestStrength) {
-      strongestStrength = strength;
-      strongestEnemy = enemy;
-    }
-  }
-
-  return strongestEnemy;
-}
-
-weakestEnemy() {
-
-  var weakestWeak = Infinity;
-  var weakestEnemy = null;
-
-  for (var enemy of enemies) {
-    var distance = dist(enemy.x, enemy.y, this.x, this.y);
-    var strength = enemy.strength;
-    if (distance > this.range + enemy.size / 2) {
-      continue;
-    }
-
-    if (enemy.strength < weakestWeak) {
-      weakestWeak = strength;
-      weakestEnemy = enemy;
-    }
-  }
-
-  return weakestEnemy;
-}
-
-
-
-farFromStart() {
-
-  var farthestDistance;
-  farthestDistance = -1
-  var farthestEnemy = null;
-
-  for (var enemy of enemies) {
-    var distance = dist(enemy.x, enemy.y, this.x, this.y);
-
-    if (distance > this.range + enemy.size / 2) {
-      continue;
-    }
-
-    var travel = enemy.distanceTraveled()
-
-    if (travel > farthestDistance) {
-      farthestDistance = travel;
-      farthestEnemy = enemy;
-    }
-  }
-
-  return farthestEnemy;
-}
-
-
-
-targetEnemy() {
-  var enemy = null;
-  if (this.targetMode == 1) {
-    enemy = this.closeToTurret();
-  }
-
-  if (this.targetMode == 2) {
-    enemy = this.farToTurret();
-  }
-
-  if (this.targetMode == 3) {
-    enemy = this.farFromStart();
-  }
-
-  if (this.targetMode == 4) {
-    enemy = this.farFromStart();
-  }
-
-  if (this.targetMode == 5) {
-    enemy = this.weakestEnemy();
-  }
-
-  if (this.targetMode == 6) {
-    enemy = this.strongestEnemy();
-  }
-
-  if (enemy == null) {
-    return;
-  }
-
-  this.lookAngle = atan2(enemy.y - this.y, enemy.x - this.x);
-  this.shootProjectile();
-}
-
-
-
-
-
-
-update() {
-
-  if (this.placed === false) {
+  followMouse() {
     this.x = mouseX;
     this.y = mouseY;
-  } else {
-    this.targetEnemy();
+  }
+
+  onRoad() {
+    for (var road of this.roads) {
+      if (CircleInRect(this, road)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  onTurret() {
+    var temp = { x: this.x, y: this.y, size: this.size * 1.5 }
+    for (var turret of turrets) {
+      if (turret.placed) {
+        if (CircleInCircle(temp, turret)) {
+          return true;
+        }
+
+      }
+
+    }
+    return false;
+  }
+  isValid() {
+    if (this.x < 0 || this.x > 500 || this.y < 0 || this.y > 500) {
+      return false;
+    }
+
+
+    if (this.onRoad()) {
+      return false;
+    }
+    if (this.onTurret()) {
+      return false;
+    }
+    return true;
 
   }
 
-  this.draw();
+  shootProjectile() {
+    if (this.shootingTimer < this.shotCooldown) {
+      this.shootingTimer += 1;
+    } else {
+      this.shootingTimer = 0;
+
+      let x = this.x + (this.gunSize * cos(this.lookAngle));
+      let y = this.y + (this.gunSize * sin(this.lookAngle));
+
+      let xSpeed = this.projectileSpeed * cos(this.lookAngle);
+      let ySpeed = this.projectileSpeed * sin(this.lookAngle);
+
+      projectiles.push(new this.projectile(x, y, xSpeed, ySpeed, this.projectileStrength));
+
+    }
+
+  }
+
+  closeToTurret() {
+
+    var closestDistance = Infinity;
+    var closestEnemy = null;
+
+    for (var enemy of enemies) {
+      var distance = dist(enemy.x, enemy.y, this.x, this.y);
+
+      if (distance > this.range + enemy.size / 2) {
+        continue;
+      }
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestEnemy = enemy;
+      }
+    }
+
+    return closestEnemy;
+  }
+
+  farToTurret() {
+
+    var farthestDistance = - Infinity;
+    var farthestEnemy = null;
+
+    for (var enemy of enemies) {
+      var distance = dist(enemy.x, enemy.y, this.x, this.y);
+
+      if (distance > this.range + enemy.size / 2) {
+        continue;
+      }
+
+      if (distance > farthestDistance) {
+        farthestDistance = distance;
+        farthestEnemy = enemy;
+      }
+    }
+
+    return farthestEnemy;
+  }
+
+  strongestEnemy() {
+
+    var strongestStrength = - Infinity;
+    var strongestEnemy = null;
+
+    for (var enemy of enemies) {
+      var distance = dist(enemy.x, enemy.y, this.x, this.y);
+      var strength = enemy.strength;
+      if (distance > this.range + enemy.size / 2) {
+        continue;
+      }
+
+      if (enemy.strength > strongestStrength) {
+        strongestStrength = strength;
+        strongestEnemy = enemy;
+      }
+    }
+
+    return strongestEnemy;
+  }
+
+  weakestEnemy() {
+
+    var weakestWeak = Infinity;
+    var weakestEnemy = null;
+
+    for (var enemy of enemies) {
+      var distance = dist(enemy.x, enemy.y, this.x, this.y);
+      var strength = enemy.strength;
+      if (distance > this.range + enemy.size / 2) {
+        continue;
+      }
+
+      if (enemy.strength < weakestWeak) {
+        weakestWeak = strength;
+        weakestEnemy = enemy;
+      }
+    }
+
+    return weakestEnemy;
+  }
+
+
+
+  farFromStart() {
+
+    var farthestDistance;
+    farthestDistance = -1
+    var farthestEnemy = null;
+
+    for (var enemy of enemies) {
+      var distance = dist(enemy.x, enemy.y, this.x, this.y);
+
+      if (distance > this.range + enemy.size / 2) {
+        continue;
+      }
+
+      var travel = enemy.distanceTraveled()
+
+      if (travel > farthestDistance) {
+        farthestDistance = travel;
+        farthestEnemy = enemy;
+      }
+    }
+
+    return farthestEnemy;
+  }
+
+
+
+  targetEnemy() {
+
+    var enemy = null;
+    if (this.targetMode == 1) {
+      enemy = this.closeToTurret();
+    }
+
+    if (this.targetMode == 2) {
+      enemy = this.farToTurret();
+    }
+
+    if (this.targetMode == 3) {
+      enemy = this.farFromStart();
+    }
+
+    if (this.targetMode == 4) {
+      enemy = this.farFromStart();
+    }
+
+    if (this.targetMode == 5) {
+      enemy = this.weakestEnemy();
+    }
+
+    if (this.targetMode == 6) {
+      enemy = this.strongestEnemy();
+    }
+
+
+
+
+
+
+
+    if (enemy == null) {
+      return;
+    }
+
+    this.lookAngle = atan2(enemy.y - this.y, enemy.x - this.x);
+    this.shootProjectile();
+  }
+
+
+
+
+
+
+  update() {
+
+    if (this.placed === false) {
+      this.x = mouseX;
+      this.y = mouseY;
+    } else {
+      this.targetEnemy();
+
+    }
+
+    this.draw();
+    if (this.selected) {
+      stroke(0);
+      fill(255);
+      text(10);
+      text("Lvl:", this.x - 5.5, this.y - 25);
+      text(this.upgrades, this.x + 10, this.y - 25);
+    }
+  }
+
+  chooseColor() {
+    if (this.selected) {
+      return color(100, 100, 300, 50);
+    }
+
+    if (this.placed || this.isValid()) {
+      return color(255, 255, 255, 50);
+    } else {
+      return color(200, 0, 0, 50);
+    }
+
+
+  }
+
+
+
 }
-
-chooseColor() {
-  if (this.selected) {
-    return color(100, 100, 300, 50);
-  }
-
-  if (this.placed || this.isValid()) {
-    return color(255, 255, 255, 50);
-  } else {
-    return color(200, 0, 0, 50);
-  }
-
-
-}
-
-
-
-  }
 
 function upgradeTurret() {
   let turret = getTurretSelected();
@@ -427,7 +446,7 @@ function buyTurret() {
       money -= newTurret.value;
       updateInfo();
     }
-  } 
+  }
   if (currentTurret == 2) {
     let newTurret = new Shotgun(path.roads)
     if (money >= newTurret.value) {

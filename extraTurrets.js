@@ -108,7 +108,7 @@ class Lazer extends Turret {
     constructor(roads) {
         super(roads);
         this.range = 10000;
-        this.projectileStrength = 1;
+        this.projectileStrength = 3;
         this.gunSize = 40;
         this.size = 50;
         this.value = 12000;
@@ -267,7 +267,7 @@ class Tazer extends Turret {
         this.value = 400;
         this.range = 70;
         this.shotCooldown = 30;
-        this.projectileStrength = 0.000000001;
+        this.projectileStrength = 0.7;
         this.gunSize = 33;
         this.projectileSpeed = 20;
         this.targetMode = 2;
@@ -343,7 +343,7 @@ class TazerProjectile extends Projectile {
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
         this.strength = strength;
-        this.size = 3;
+        this.size = 3.5;
     }
     move() {
         this.x += this.xSpeed;
@@ -484,7 +484,7 @@ class Mini extends Turret {
         this.projectileSpeed = 13;
         this.targetMode = 4;
         this.projectileStrength = 0.6;
-        this.projectile = Projectile;
+        this.projectile = MiniProjectile;
 
 
     }
@@ -554,7 +554,7 @@ class MiniProjectile extends Projectile {
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
-        this.size = 7;
+        this.size = 8;
     }
     move() {
         this.x += this.xSpeed;
@@ -577,7 +577,7 @@ class Small extends Turret {
         this.targetMode = 1;
         this.size = 15;
         this.projectileStrength = 0.19;
-        this.projectile = Projectile;
+        this.projectile = SmallProjectile;
 
 
     }
@@ -640,7 +640,7 @@ class SmallProjectile extends Projectile {
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
-        this.size = 2;
+        this.size = 1.5;
     }
     move() {
         this.x += this.xSpeed;
@@ -667,15 +667,15 @@ class SmallProjectile extends Projectile {
 class Shotgun extends Turret {
     constructor(roads) {
         super(roads);
-        this.value = 100;
-        this.range = 75;
-        this.shotCooldown = 18;
-        this.gunSize = 25;
+        this.value = 150;
+        this.range = 70;
+        this.shotCooldown = 30;
+        this.gunSize = 31;
         this.projectileSpeed = 15;
         this.targetMode = 1;
-        this.size = 45;
-        this.projectileStrength = 1;
-        this.projectile = Projectile;
+        this.size = 42;
+        this.projectileStrength = 0.75;
+        this.projectile = ShotgunProjectile;
 
 
     }
@@ -689,7 +689,7 @@ class Shotgun extends Turret {
         }
 
         //Turret Gun
-        strokeWeight(6);
+        strokeWeight(10);
         fill(0,0,0);
         stroke(20,0,0);
         var x = this.gunSize * cos(this.lookAngle);
@@ -701,7 +701,7 @@ class Shotgun extends Turret {
         stroke(20, 0, 0);
         fill(252, 69, 3);
         ellipse(this.x, this.y, this.size, this.size);
-         fill()
+         fill(252, 69, 3);
          push();
         translate(this.x, this.y, rectMode(CENTER));
         rotate(this.lookAngle);
@@ -744,7 +744,7 @@ class ShotgunProjectile extends Projectile {
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
-        this.size = 6;
+        this.size = 8;
     }
     move() {
         this.x += this.xSpeed;

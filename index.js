@@ -60,7 +60,7 @@ var turretType = ["Semi Auto Turret", "Mini-Turret", "Shotgun Turret", "Sniper R
 
 var currentTurret = 0;
 
-var arr = ["Uh oh"];
+//var arr = ["Uh oh"];
 
 var levelSelected = false;
 
@@ -117,9 +117,9 @@ function setup() {
   infoButton = new Button(250, 330, 300, 50, "Info", function () { inform = true; paused = false });
   rectMode(CENTER, CENTER);
   textSize(20);
-  map1Button = new Button(250, 150, 400, 80, "Map1  Easy Peasy :D", function () { bgColor = color(224, 166, 105); path = new Path(levelOneNodes); path.color = color(196, 140, 81); wave = new Wave(levelOneNodes); started = true; money = 750; health = 20; levelSelected = true; turretProof = path.roads; updateInfo() });
-  map2Button = new Button(250, 275, 400, 80, "Map2  Mild :/", function () { bgColor = color(196, 194, 192); path = new Path(levelTwoNodes); path.color = color(79, 78, 77); wave = new Wave(levelTwoNodes); started = true; levelSelected = true; money = 500; health = 10; turretProof = path.roads; updateInfo() });
-  map3Button = new Button(250, 400, 400, 80, "Map3  Kaizo :<", function () { bgColor = color(250, 211, 105); path = new Path(levelThreeNodes); terrain = new Path(terrainNodes); wave = new Wave(levelThreeNodes); started = true; levelSelected = true; money = 450; health = 1; alert(arr); turretProof = terrain.roads.concat(path.roads); updateInfo() });
+  map1Button = new Button(250, 150, 400, 80, "Map 1  Easy Peasy :D", function () { bgColor = color(224, 166, 105); path = new Path(levelOneNodes); path.color = color(196, 140, 81); wave = new Wave(levelOneNodes); started = true; money = 750; health = 20; levelSelected = true; turretProof = path.roads; updateInfo() });
+  map2Button = new Button(250, 275, 400, 80, "Map 2  Mild :/", function () { bgColor = color(196, 194, 192); path = new Path(levelTwoNodes); path.color = color(79, 78, 77); wave = new Wave(levelTwoNodes); started = true; levelSelected = true; money = 500; health = 10; turretProof = path.roads; updateInfo() });
+  map3Button = new Button(250, 400, 400, 80, "Map 3  Kaizo :<", function () { bgColor = color(250, 211, 105); path = new Path(levelThreeNodes); terrain = new Path(terrainNodes); wave = new Wave(levelThreeNodes); started = true; levelSelected = true; money = 450; health = 1; turretProof = terrain.roads.concat(path.roads); updateInfo() });
   rectMode(CORNER, TOP);
   backButton = new Button(250, 330, 200, 45, "Back", function () { paused = true });
   backButton2 = new Button(250, 330, 200, 45, "Back", function () { imform = false; paused = true });
@@ -250,7 +250,7 @@ function checkTurret() {
 
     }
     if (currentTurret == 2) {
-      text = "Price: $100";
+      text = "Price: $150";
 
     }
 
@@ -376,7 +376,7 @@ function drawControls() {
   textSize(18);
   text("Target Mode - Left and Right Arrows ", 250, 270);
   textSize(20);
-  text("Alt F4 - Win The Game", 250, 215);
+  text("There Are ", 250, 215);
   text("Back", 250, 330);
   fill(150);
   stroke(44);
@@ -408,12 +408,12 @@ function drawPause() {
   text("Paused", 250, 70)
 
   text("Resume", 250, 170);
-  text("Hotkeys", 250, 250);
+  text("Tips", 250, 250);
   text("Info", 250, 330);
   fill(150);
   stroke(44);
   pauseButton.draw();
-  controlButton.draw();
+//  controlButton.draw();
   infoButton.draw();
 
 
@@ -428,7 +428,7 @@ function gameOver() {
   fill(200);
   textSize(38);
   textAlign(CENTER, CENTER);
-  text("You Lost..", 250, 250);
+  text("Game Over.", 250, 250);
 }
 
 function updateInfo() {
