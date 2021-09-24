@@ -56,7 +56,7 @@ var terrainNodes = [
 
 var turretProof;
 
-var turretType = ["Semi Auto Turret", "Mini-Turret", "Shotgun Turret", "Sniper Rifle Turret", "Money Making Turret", "Minigun Turret", "600 Volt Turret", "Focused Lazer Turret"];
+var turretType = ["Semi Auto Turret", "Mini Turret", "Shotgun Turret", "Sniper Turret", "Money Making Turret", "Minigun Turret", "50,000 Volt Tazer Turret", "Focused Lazer Turret"];
 
 var currentTurret = 0;
 
@@ -119,7 +119,7 @@ function setup() {
   textSize(20);
   map1Button = new Button(250, 150, 400, 80, "Map 1  Easy Peasy :D", function () { bgColor = color(224, 166, 105); path = new Path(levelOneNodes); path.color = color(196, 140, 81); wave = new Wave(levelOneNodes); started = true; money = 750; health = 20; levelSelected = true; turretProof = path.roads; updateInfo() });
   map2Button = new Button(250, 275, 400, 80, "Map 2  Mild :/", function () { bgColor = color(196, 194, 192); path = new Path(levelTwoNodes); path.color = color(79, 78, 77); wave = new Wave(levelTwoNodes); started = true; levelSelected = true; money = 500; health = 10; turretProof = path.roads; updateInfo() });
-  map3Button = new Button(250, 400, 400, 80, "Map 3  Kaizo :<", function () { bgColor = color(250, 211, 105); path = new Path(levelThreeNodes); terrain = new Path(terrainNodes); wave = new Wave(levelThreeNodes); started = true; levelSelected = true; money = 450; health = 1; turretProof = terrain.roads.concat(path.roads); updateInfo() });
+  map3Button = new Button(250, 400, 400, 80, "Map 3  Kaizo :<", function () { bgColor = color(250, 211, 105); path = new Path(levelThreeNodes); terrain = new Path(terrainNodes); wave = new Wave(levelThreeNodes); started = true; levelSelected = true; money = 450; health = 0; turretProof = terrain.roads.concat(path.roads); updateInfo() });
   rectMode(CORNER, TOP);
   backButton = new Button(250, 330, 200, 45, "Back", function () { paused = true });
   backButton2 = new Button(250, 330, 200, 45, "Back", function () { imform = false; paused = true });
@@ -259,7 +259,7 @@ function checkTurret() {
 
     }
     if (currentTurret == 6) {
-      text = "Price: $400";
+      text = "Price: $450";
     }
   }
   if (currentTurret == 4) {
@@ -267,7 +267,7 @@ function checkTurret() {
   }
 
   if (currentTurret == 5) {
-    text = "Price: $500";
+    text = "Price: $550";
   }
 
   if (currentTurret == 7) {
@@ -479,7 +479,7 @@ function checkCollision() {
             updateInfo();
           }
           if (projectile instanceof TazerProjectile) {
-            enemy.slowTimer = 100;
+            enemy.slowTimer = 120;
 
           }
 

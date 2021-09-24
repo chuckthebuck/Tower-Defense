@@ -5,7 +5,7 @@ class Sniper extends Turret {
         this.range = 400;
         this.shotCooldown = 70;
         this.gunSize = 45;
-        this.projectileStrength = 20;
+        this.projectileStrength = 2;
         this.projectileSpeed = 30;
         this.targetMode = 3;
         this.projectile = Projectile;
@@ -264,7 +264,7 @@ class LazerProjectile extends Projectile {
 class Tazer extends Turret {
     constructor(roads) {
         super(roads);
-        this.value = 400;
+        this.value = 450;
         this.range = 70;
         this.shotCooldown = 30;
         this.projectileStrength = 0.7;
@@ -477,7 +477,7 @@ class MmtdProjectile extends Projectile {
 class Mini extends Turret {
     constructor(roads) {
         super(roads);
-        this.value = 500;
+        this.value = 550;
         this.range = 150;
         this.shotCooldown = 5;
         this.gunSize = 36;
