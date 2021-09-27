@@ -5,7 +5,7 @@ class Sniper extends Turret {
         this.range = 400;
         this.shotCooldown = 70;
         this.gunSize = 45;
-        this.projectileStrength = 2;
+        this.projectileStrength = 5;
         this.projectileSpeed = 30;
         this.targetMode = 3;
         this.projectile = Projectile;
