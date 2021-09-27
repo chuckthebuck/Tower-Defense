@@ -271,7 +271,7 @@ function checkTurret() {
   }
 
   if (currentTurret == 7) {
-    text = "Price: $12k"
+    text = "Price: $2000"
   }
 
   document.getElementById("buyTurretText").textContent = text;

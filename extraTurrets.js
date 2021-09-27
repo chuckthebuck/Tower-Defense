@@ -111,7 +111,7 @@ class Lazer extends Turret {
         this.projectileStrength = 3;
         this.gunSize = 40;
         this.size = 50;
-        this.value = 12000;
+        this.value = 2000;
 
     }
     draw() {
