@@ -39,6 +39,7 @@ h2{
     font-size: 20;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 10;
+    display: inline-block;
 }
 h1{
     font-size: 70;
@@ -95,10 +96,10 @@ margin-bottom: 10.5
 
 #menuInfo h2{
     float: left;
-    width: 100px;
+    width: 80px;
     height:34.8;
     font-size:20px;
-    padding-left: 0px;
+    padding-left: 10px;
     font-family: 'Courier New', Courier, monospace; 
 }
 

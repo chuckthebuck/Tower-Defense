@@ -433,7 +433,7 @@ function gameOver() {
 
 function updateInfo() {
   document.getElementById("Money").innerHTML = floor(money);
-  document.getElementById("Health").innerHTML = health;
+  document.getElementById("Health").innerHTML =  health;
 }
 
 function startWave() {
