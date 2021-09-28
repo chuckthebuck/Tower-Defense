@@ -68,6 +68,15 @@ class Turret {
         this.projectileStrength += 0.35;
         this.range += 25;
 
+    } else if (this instanceof Lazer) {
+this.projectileStrength += 0.5;
+if(this.upgrades == 2){
+  this.projectileStrength += 1;
+}
+if(this.upgrades == 3){
+  this.projectileStrength += 2;
+}
+
     } else if (this instanceof Turret) {
       this.shootingTimer -= 1;
 

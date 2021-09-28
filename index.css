@@ -1,7 +1,9 @@
-
+#background{
+  color: white;
+}
 #gameCanvas {
     float:left;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 
@@ -30,16 +32,17 @@ img{
     height: 200px;
     width: 200px;
     padding: -10px;
+    border: 2.5px solid rgb(44, 44, 44);
+    
 
 }
 
 
 h2{
-     fill: 2.5px solid rgb(200, 200 ,200);
+     fill: 2.5px solid rgb(255, 255, 255);
     font-size: 20;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 10;
-    display: inline-block;
 }
 h1{
     font-size: 70;

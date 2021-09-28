@@ -74,9 +74,9 @@ class Wave {
       this.speed += 0.15;
     }
 
-    this.groupDelay = random(35, 75)
+
     if(this.number <= 15){
-      this.groupDelay = random(45, 70);
+      this.groupDelay = random(35, 50);
     }
     if (this.number === 15) {
       this.strength += 1;
