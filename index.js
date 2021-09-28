@@ -117,7 +117,7 @@ function setup() {
   infoButton = new Button(250, 330, 300, 50, "Info", function () { inform = true; paused = false });
   rectMode(CENTER, CENTER);
   textSize(20);
-  map1Button = new Button(250, 150, 400, 80, "Map 1  Easy Peasy :D", function () { bgColor = color(224, 166, 105); path = new Path(levelOneNodes); path.color = color(196, 140, 81); wave = new Wave(levelOneNodes); started = true; money = 2000; health = 20; levelSelected = true; turretProof = path.roads; updateInfo() });
+  map1Button = new Button(250, 150, 400, 80, "Map 1  Easy Peasy :D", function () { bgColor = color(224, 166, 105); path = new Path(levelOneNodes); path.color = color(196, 140, 81); wave = new Wave(levelOneNodes); started = true; money = 750; health = 20; levelSelected = true; turretProof = path.roads; updateInfo() });
   map2Button = new Button(250, 275, 400, 80, "Map 2  Mild :/", function () { bgColor = color(196, 194, 192); path = new Path(levelTwoNodes); path.color = color(79, 78, 77); wave = new Wave(levelTwoNodes); started = true; levelSelected = true; money = 500; health = 10; turretProof = path.roads; updateInfo() });
   map3Button = new Button(250, 400, 400, 80, "Map 3  Kaizo :<", function () { bgColor = color(250, 211, 105); path = new Path(levelThreeNodes); terrain = new Path(terrainNodes); wave = new Wave(levelThreeNodes); started = true; levelSelected = true; money = 450; health = 0; turretProof = terrain.roads.concat(path.roads); updateInfo() });
   rectMode(CORNER, TOP);
